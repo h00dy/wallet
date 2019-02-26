@@ -12,9 +12,11 @@ defmodule Wallet.Report.Classifier do
       %Classifier{name: "Zakupy", filters: ~w[TESCO rossman piotr chata netto supermarket yves empik fotojoker zabka MAMERT HERBATE Mieso Allegro]},
       %Classifier{name: "Rozrywka", filters: ~w[Spotify netflix]},
       %Classifier{name: "Samochod", filters: ~w[berdychowski circle ppo spo]},
-      %Classifier{name: "Rachunki", filters: ~w[inea enea pgnig peka goap]},
+      %Classifier{name: "Rachunki", filters: ["inea", "enea", "pgnig", "peka", "goap", "orange", "za uslugi I", "36103000190109853000298138"]},
       %Classifier{name: "Restauracje", filters: ~w[Restauracja pizzeria tusieje burger Paczkarnia burgs]},
       %Classifier{name: "Kredyt", filters: ["pocztowym"]},
+      %Classifier{name: "Konto oszczędnościowe", filters: ["16103000190109852500041756"]},
+      %Classifier{name: "Ubezpieczenie", filters: ["ubezpieczenie", "NATIONALE-NEDERLANDEN"]},
       %Classifier{name: "Inne", filters: [" "]}
     ]
   end
