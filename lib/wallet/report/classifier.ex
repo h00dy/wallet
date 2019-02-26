@@ -9,11 +9,12 @@ defmodule Wallet.Report.Classifier do
     # todo zmienićń na strukturę, ktora będize trzymać vendorow
     [
       %Classifier{name: "Zdrowie", filters: ~w[apteka synevo lekarz przychodnia nukleomed]},
-      %Classifier{name: "Zakupy", filters: ~w[TESCO rossman piotr chata netto supermarket yves empik fotojoker zabka MAMERT HERBATE Mieso]},
+      %Classifier{name: "Zakupy", filters: ~w[TESCO rossman piotr chata netto supermarket yves empik fotojoker zabka MAMERT HERBATE Mieso Allegro]},
       %Classifier{name: "Rozrywka", filters: ~w[Spotify netflix]},
       %Classifier{name: "Samochod", filters: ~w[berdychowski circle ppo spo]},
-      %Classifier{name: "Rachunki", filters: ~w[inea enea pgnig peka]},
+      %Classifier{name: "Rachunki", filters: ~w[inea enea pgnig peka goap]},
       %Classifier{name: "Restauracje", filters: ~w[Restauracja pizzeria tusieje burger Paczkarnia burgs]},
+      %Classifier{name: "Kredyt", filters: ["pocztowym"]},
       %Classifier{name: "Inne", filters: [" "]}
     ]
   end

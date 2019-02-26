@@ -15,11 +15,14 @@ defmodule Wallet.Parsers.Csv do
     |> drop_head.()
     |> to_string
     |> CSV.parse_string(headers: false)
-    |> Enum.map(fn [date_str, vendor, value, _, _] ->
+    |> Enum.map(fn [date_str, vendor, value | _] ->
+      float_value = value
+      |> String.replace(".", "")
+      |> String.to_float
       %Wallet.Parser.Output{
         date: make_date(date_str),
         vendor: vendor,
-        value: String.to_float(value)
+        value: float_value
       }
     end)
   end
