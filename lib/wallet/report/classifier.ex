@@ -10,10 +10,10 @@ defmodule Wallet.Report.Classifier do
     [
       %Classifier{name: "Zdrowie", filters: ~w[apteka synevo lekarz przychodnia nukleomed]},
       %Classifier{name: "Zakupy", filters: ~w[TESCO rossman piotr chata netto supermarket yves empik fotojoker zabka MAMERT HERBATE Mieso Allegro]},
-      %Classifier{name: "Rozrywka", filters: ~w[Spotify netflix]},
+      %Classifier{name: "Rozrywka", filters: ~w[Spotify netflix kwiaciarnia]},
       %Classifier{name: "Samochod", filters: ~w[berdychowski circle ppo spo]},
       %Classifier{name: "Rachunki", filters: ["inea", "enea", "pgnig", "peka", "goap", "orange", "za uslugi I", "36103000190109853000298138"]},
-      %Classifier{name: "Restauracje", filters: ~w[Restauracja pizzeria tusieje burger Paczkarnia burgs]},
+      %Classifier{name: "Restauracje", filters: ~w[Restauracja pizzeria tusieje burger Paczkarnia burgs pyszne]},
       %Classifier{name: "Kredyt", filters: ["pocztowym"]},
       %Classifier{name: "Konto oszczędnościowe", filters: ["16103000190109852500041756"]},
       %Classifier{name: "Ubezpieczenie", filters: ["ubezpieczenie", "NATIONALE-NEDERLANDEN"]},
