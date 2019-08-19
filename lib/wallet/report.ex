@@ -22,10 +22,7 @@ defmodule Wallet.Report do
   def build_report(file_list) when is_list(file_list)  do
     file_list
     |> Enum.reduce([], &add_to_report(&2, &1))
-    |> Enum.group_by(fn vendor ->
-      {_y, month, _d} = Date.to_erl(vendor.date)
-      month
-    end)
+    |> group_by_month
     |> Task.async_stream(&summarize/1)
     |> Enum.to_list()
   end
@@ -33,11 +30,20 @@ defmodule Wallet.Report do
   def summarize({key, vendors}) do
     summary =
       vendors
-      |> Classifier.assign_to_class(Classifier.get_categories())
+      |> Classifier.classify
       |> Enum.reduce(%{}, fn record, acc ->
         Map.update(acc, record.class, record.value, &(&1 + record.value))
       end)
 
     {key, summary}
   end
+
+  def group_by_month(vendors) do
+    vendors
+    |> Enum.group_by(fn vendor ->
+      {_y, month, _d} = Date.to_erl(vendor.date)
+      month
+    end)
+  end
+
 end
