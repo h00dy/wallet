@@ -19,7 +19,7 @@ defmodule Wallet.Report do
     |> Enum.concat(report_data)
   end
 
-  def build_report(file_list) when is_list(file_list)  do
+  def build_report(file_list) when is_list(file_list) do
     file_list
     |> Enum.reduce([], &add_to_report(&2, &1))
     |> group_by_month
@@ -30,12 +30,17 @@ defmodule Wallet.Report do
   def summarize({key, vendors}) do
     summary =
       vendors
-      |> Classifier.classify
-      |> Enum.reduce(%{}, fn record, acc ->
-        Map.update(acc, record.class, record.value, &(&1 + record.value))
-      end)
+      |> Classifier.classify()
+      |> sum_by_class()
 
-    {key, summary}
+    total =
+      summary
+      |> exclude_from_total("Karta kredytowa")
+      |> exclude_from_total("Zasilenie konta")
+      |> Map.values()
+      |> Enum.sum()
+
+    {key, Map.update(summary, "total", total, &+/1)}
   end
 
   def group_by_month(vendors) do
@@ -46,4 +51,18 @@ defmodule Wallet.Report do
     end)
   end
 
+  defp sum_by_class(classified_data) do
+    classified_data
+    |> Enum.reduce(%{}, fn record, acc ->
+      Map.update(acc, record.class, record.value, &(&1 + record.value))
+    end)
+  end
+
+  defp exclude_from_total(summary, key) do
+    {_value, filtered_result} =
+      summary
+      |> Map.pop(key)
+
+    filtered_result
+  end
 end
